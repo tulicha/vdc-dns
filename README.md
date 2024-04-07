@@ -1,2 +1,2 @@
 # vdc-dns
-tba
+Autoři :::
