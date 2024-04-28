@@ -71,6 +71,8 @@ Keepalived is an open-source implementation of VRRP for Linux-based systems. It 
 
 ### Authoritative cluster
 
+TODO - Vyřešit posílání záznamů mezi stroji v clusteru!
+
 - Update system: sudo apt update && sudo apt upgrade (Debian-based)
 - Install all necessary packages: arping, traceroute, net-tools, keepalived, bind9
 - Set up keepalived (on all machines in cluster)
@@ -91,6 +93,8 @@ Keepalived is an open-source implementation of VRRP for Linux-based systems. It 
 - Test by shutting down machines
 
 ### Recursive server
+
+TODO - Napraseno - opravit!
 
 - Update system: sudo apt update && sudo apt upgrade (Debian-based)
 - Install all necessary packages: arping, traceroute, net-tools, bind9
