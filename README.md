@@ -151,3 +151,11 @@ webovky		    A	    169.254.0.3
 - Enum
 - Set one cluster on different service (if critical vulnarability occurs)
 - Send logs to other (independed) server
+
+## Literature
+
+- Domain Name System, CZ-NIC, ISBN: 978-80-88168-71-3
+- RFC 5798
+- RFC 882
+- BIND 9 Administrator Reference Manual
+- Keepalived User Guide
