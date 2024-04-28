@@ -1,0 +1,34 @@
+zone "local" IN {
+        type master;
+        file "/etc/bind/zones/local";
+        notify yes;
+        #also-notfy { ADAM-IP };
+};
+
+zone "ns.local" {
+        type master;
+        file "/etc/bind/zones/ns.local";
+        notify yes;
+        #also-notfy { ADAM-IP };
+};
+
+
+
+
+
+#a.ns.local.
+zone "179.76.119.10.in-addr.arpa" {
+	type master;
+	file "/etc/bind/zones/179.76.119.10.in-addr.arpa";
+	notify yes;
+	#also-notify { ADAM-ip };
+};
+
+#slavion7-1.local.
+zone "176.76.119.10.in-addr.arpa" {
+	type master;
+	file "/etc/bind/zones/176.76.119.10.in-addr.arpa";
+	notify yes;
+	#also-notfy { ADAM-ip };
+};
+

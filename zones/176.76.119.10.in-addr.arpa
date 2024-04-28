@@ -1,0 +1,21 @@
+;
+; BIND data file for local domain
+;
+
+;No caching
+$TTL    0
+$ORIGIN 176.76.119.10.in-addr.arpa.
+
+@       IN      SOA     a.ns.local. admin.local. (
+                     2024042702         ; Serial
+                         604800         ; Refresh
+                          86400         ; Retry
+                        2419200         ; Expire
+                         604800 )       ; Negative Cache TTL
+; Name servers
+        IN      NS        a.ns.local.
+
+@	IN	PTR  	  www1.local.
+@	IN	PTR	  recur-server-1.local.
+@	IN 	PTR	  slavion7-1.local. 
+

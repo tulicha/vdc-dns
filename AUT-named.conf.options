@@ -1,0 +1,16 @@
+options {
+        directory "/var/cache/bind";
+        recursion no;                // Only authoritatian
+        allow-query { any; };        // Everybody can ask
+        allow-query-cache { none; }; // Don't cachne
+        auth-nxdomain no;            // Don't answer as authoritatian to NXDOMAIN
+
+        allow-transfer {
+                10.119.76.0/22;	     // Only these guests can ask for full domain info
+        };
+
+        rate-limit {
+                responses-per-second 10;        
+        };
+};
+

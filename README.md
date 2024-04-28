@@ -33,10 +33,18 @@ In the event of a complete cluster failure, the second cluster will still serve 
 
 - Install all necessary packages: arping, traceroute, net-tools, keepalived, bind9
 - Set up keepalived (on all machines in cluster)
-  - Edit conf file: sudo vim /etc/keepalived/keepalived.conf (Example of configaration in "keepalived.conf")
+  - Edit conf file: sudo vim /etc/keepalived/keepalived.conf (Example of configuration in "keepalived.conf")
   - Start service: sudo systemctl start keepalived
   - Check logs: cat /var/log/syslog
   - Enable service: sudo systemctl enable keepalived
   - Test Virtual IP: ping <Virtual IP>
 - Set up BIND9
-  - edi
+  - Edit options file: sudo vim /etc/bind/named.conf.options (Example of configuration in AUT-named.conf.options")
+  - Edit local (add local domains) file: sudo vim /etc/bind/named.conf.local (Example of configuration in ATU-named.conf.local")
+  - Create domain entries -> zones/*
+  - Check with named-checkconf -z /etc/bind/named.conf
+  - Start service: sudo systemctl start named
+  - Check logs: cat /var/log/syslog
+  - Enable service: sudo systemctl enable named
+  - Check from other computer: host <domain name> <virtual ip>
+

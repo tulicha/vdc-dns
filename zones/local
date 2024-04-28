@@ -1,0 +1,27 @@
+;
+; BIND data file for local domain
+;
+
+;No caching
+$TTL    0
+
+@       IN      SOA     a.ns.local. admin.local. (
+                     2024042702         ; Serial
+                         604800         ; Refresh
+                          86400         ; Retry
+                        2419200         ; Expire
+                         604800 )       ; Negative Cache TTL
+; Name servers
+@       IN      NS      a.ns.local.
+
+a.ns    IN      A       10.119.76.179
+a.ns	IN	TXT	"Primary DNS server"
+
+@	IN	MX	0 .
+@	IN 	TXT	"This domain does not support mail"
+
+; Other services
+
+www1		CNAME	slavion7-1
+recur-server-1	CNAME   slavion7-1
+slavion7-1	A       10.119.76.176
