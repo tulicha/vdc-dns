@@ -51,7 +51,7 @@ In the event of a complete cluster failure, the second cluster will still serve 
 
 ### Recursive server
 
-- Install all necessary packages: arping, traceroute, net-tools, bin9
+- Install all necessary packages: arping, traceroute, net-tools, bind9
 - Set up BIND9 as recursive
   - Edit conf file: sudo vim /etc/bind/named.conf (Example of configuratio in REC-named.conf)
   - Check conf-files: named-checkconf -z /etc/bind/named.conf
@@ -59,3 +59,13 @@ In the event of a complete cluster failure, the second cluster will still serve 
   - Check logs: cat /var/log/syslog
   - Enable service: sudo systemctl enable named
   - test from other machine: host \<domain name\> \<server ip\> 
+
+## Possible improvements
+
+- DNSSEC
+  - Hide Master DNS and sign DNS on the fly with other server
+- Set up database cluster for storing data
+- Dynamic DNS
+- Set one cluster on different service (if critical vulnarability occurs
+- Dynamic DNS
+- Set one cluster on different service (if critical vulnarability occurs)
