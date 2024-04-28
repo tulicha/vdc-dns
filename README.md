@@ -1,8 +1,20 @@
+# TODO
+
+- Musíme dodělat ten Slave DNS cluster a otestovat to, ale mělo by to běžet ok
+  - Přidat do DNS záznamů adamovy stroje
+  - Zkusit a spustit Adamův authoritative DNS Slave a zjistit, jestli si správně stáhne data
+  - Vyzkoušet výpadek
+- Mít na obou clusterovaných strojích shodné informace - Nemám!
+- Rekurzivní DNS je momentálně neskutečně naprasenej, nešlo by to udělat líp? 
+  - Všechny dotazy nyní prvotně směřuje na cluster, kterej ale zná jen \*.local
+  - Když bude chvíli času, podívat se, jestli by to nešlo udělat nějak pomocí pohledů či co
+- Spustit na neclusterových pc nějaké služby ať máme co dát do záznamů (https)
+
 # DNS Cluster
 
 ## Goals of this project
 
-The goal of this project is to create authoritative DNS clusters. These clusters will be used to provide Domain Name System (DNS) services for the domain ".local." including reverse queries.
+The goal of this project is to create complete DNS infrastructure for mid to large size company with DNS clusters. These clusters will be used to provide Domain Name System (DNS) services for the domain ".local." including reverse queries.
 
 ## Authors
 
@@ -59,6 +71,7 @@ Keepalived is an open-source implementation of VRRP for Linux-based systems. It 
 
 ### Authoritative cluster
 
+- Update system: sudo apt update && sudo apt upgrade (Debian-based)
 - Install all necessary packages: arping, traceroute, net-tools, keepalived, bind9
 - Set up keepalived (on all machines in cluster)
   - Edit conf file: sudo vim /etc/keepalived/keepalived.conf (Example of configuration in "keepalived.conf")
@@ -79,6 +92,7 @@ Keepalived is an open-source implementation of VRRP for Linux-based systems. It 
 
 ### Recursive server
 
+- Update system: sudo apt update && sudo apt upgrade (Debian-based)
 - Install all necessary packages: arping, traceroute, net-tools, bind9
 - Set up BIND9 as recursive
   - Edit conf file: sudo vim /etc/bind/named.conf (Example of configuratio in REC-named.conf)
@@ -94,6 +108,6 @@ Keepalived is an open-source implementation of VRRP for Linux-based systems. It 
   - Hide Master DNS and sign DNS on the fly with other server
 - Set up database cluster for storing data
 - Dynamic DNS
-- Set one cluster on different service (if critical vulnarability occurs
-- Dynamic DNS
+- Enum
 - Set one cluster on different service (if critical vulnarability occurs)
+- Send logs to other (independed) server
