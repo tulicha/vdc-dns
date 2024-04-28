@@ -29,11 +29,31 @@ In the event of a complete cluster failure, the second cluster will still serve 
 
 ## Explanation of servicies programs? TODO
 
+### DNS
+
+Domain Name System is a decentralized system that translates human-readable domain names to IP adressess (example.com -> 2001:DB8::F1). DNS operates as a distributed system with a hierarchical structure starting with a root domain: "." 
+
 ### DNS Servers
 
 #### DNS Recursive Servers
 
-Used to find IP addresses by searching for domain information on their behalf, navigating through DNS hierarchy until the information is found
+They are used to find IP addresses by searching for domain information on their behalf, navigating through DNS hierarchy until the information is found. They cache gained iformation which reduces traffic to DNS root servers. It is recommended that every mid to large LAN have at leaset two (Master & Backup)
+
+#### DNS Authoritative Servers
+
+Authoritative DNS servers store and provide DNS records for specific domain names, acting as the ultimate source of truth for domain-related information (IPv4/6 addresses, servers for e-mail, ...). It is neccessary that at least two servers serve a domain - Master & Slave. The only difference between Master & Slave servers is that Slave servers in periodic intervals checks Master for actual information about DNS zones, The answer from Master and Slave have the same trustworthness
+
+#### BIND9
+
+BIND, or BIND9, is an open-source software implementation of the Domain Name System (DNS) protocol. It can serve as Authoritative, Recursive or Mixed DNS server. It is the most widely used software for DNS and support all DNS features.
+
+### VRRP
+
+Virtual Router Redundancy Protocol is a network protocol used to provide high avalibility by allowing multiple network devices to share a virtual IP address. One device is elected as the virtual router master, while the others act as backups. If the master fails, one of the backup routers takes over as the master. OpenBSD alternative for VRRP is CARP (Common Address Redundany Protocol)
+
+#### Keepalived 
+
+Keepalived is an open-source implementation of VRRP for Linux-based systems. It supports many security features like sending emails in case of server failure and it runs as a deamon.
 
 ## Documentation setup
 
