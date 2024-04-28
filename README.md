@@ -19,7 +19,7 @@ The goal of this project is to create complete DNS infrastructure for mid to lar
 ## Authors
 
 - Adam Prchlík
-  - Email: [adam.prchlik@example.com](mailto:adam.prchlik@example.com)
+  - Email: [prchlad2@fit.cvut.cz](mailto:adam.prchlik@example.com)
 
 - Ondřej Slavík
   - Email: [slavion7@fit.cvut.cz](mailto:slavion7@fit.cvut.cz)
