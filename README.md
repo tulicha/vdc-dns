@@ -27,6 +27,14 @@ The authoritative servers are located in the fail-over cluster. They are a much 
 If a computer in the cluster fails, the other server (VRRP - keapalived) takes over its role.
 In the event of a complete cluster failure, the second cluster will still serve the domain(s)
 
+## Explanation of servicies programs? TODO
+
+### DNS Servers
+
+#### DNS Recursive Servers
+
+Used to find IP addresses by searching for domain information on their behalf, navigating through DNS hierarchy until the information is found
+
 ## Documentation setup
 
 ### Authoritative cluster
