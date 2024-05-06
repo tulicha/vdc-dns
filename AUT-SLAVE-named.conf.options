@@ -1,0 +1,15 @@
+options {
+    directory "/var/cache/bind";
+    recursion no;                // Disable recursion as this is an authoritative-only server
+    allow-query { any; };        // Allow queries from any client
+    allow-query-cache { none; }; // Disable query caching
+    auth-nxdomain no;            // Do not provide authoritative answers for NXDOMAIN
+
+    allow-transfer {
+        MASTER_IP_ADDRESS;       // Replace MASTER_IP_ADDRESS with the IP address of the master server
+    };
+
+    rate-limit {
+        responses-per-second 10; // Limit the rate of responses to 10 per second
+    };
+};
