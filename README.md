@@ -94,11 +94,29 @@ Keepalived is an open-source implementation of VRRP for Linux-based systems. It 
 
 ### Slave cluster
 
-- TODO, Adame, tady prosím doplň, jak jsi nastavil tvůj cluster
+- Update system: sudo apt update && sudo apt upgrade (Debian-based)
+- Install all necessary packages: arping, traceroute, net-tools, keepalived, bind9
+- Set up keepalived (on all machines in cluster)
+  - Edit conf file: sudo vim /etc/keepalived/keepalived.conf (Example of configuration in "keepalived.conf")
+  - Start service: sudo systemctl start keepalived
+  - Check logs: cat /var/log/syslog
+  - Enable service: sudo systemctl enable keepalived
+  - Test Virtual IP: ping <Virtual IP>
+- Set up BIND9
+  - Edit options file: sudo vim /etc/bind/named.conf.local (Example of configuration in SLAVE-named.conf.options")
+  - Check conf files: named-checkconf -z /etc/bind/named.conf.local
+  - Start service: sudo systemctl start named
+  - Download zone entries from master: sudo rndc reload *
+  - Check logs: cat /var/log/syslog
+  - You may need to update privileges
+      -sudo cp /etc/apparmor.d/usr.sbin.named /etc/apparmor.d/usr.sbin.named.custom¨
+      -sudo nano /etc/apparmor.d/usr.sbin.named.custom
+      -sudo apparmor_parser -r /etc/apparmor.d/usr.sbin.named.custom
+      -sudo systemctl restart bind9
+  - Enable service: sudo systemctl enable named
+  - Check from other computer: host \<domain name\> \<virtual ip\>
 
 ### Recursive server
-
-TODO - Adame, doplň tvůj lepší config
 
 - Update system: sudo apt update && sudo apt upgrade (Debian-based)
 - Install all necessary packages: arping, traceroute, net-tools, bind9
