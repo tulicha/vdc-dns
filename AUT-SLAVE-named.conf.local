@@ -1,0 +1,28 @@
+primaries masterserver { 10.119.76.179; };
+
+zone "local" IN {
+        type slave;
+        file "/etc/bind/zones/local";
+        primaries { masterserver; };
+};
+
+zone "ns.local" {
+        type slave;
+        file "/etc/bind/zones/ns.local";
+        primaries { masterserver; };
+};
+
+
+#a.ns.local.
+zone "179.76.119.10.in-addr.arpa" {
+        type slave;
+        file "/etc/bind/zones/179.76.119.10.in-addr.arpa";
+        primaries { masterserver; };
+};
+
+#slavion7-1.local.
+zone "176.76.119.10.in-addr.arpa" {
+        type slave;
+        file "/etc/bind/zones/176.76.119.10.in-addr.arpa";
+        primaries { masterserver; };
+};
