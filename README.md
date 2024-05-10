@@ -1,14 +1,10 @@
 # TODO
 
-- Musíme dodělat ten Slave DNS cluster a otestovat to, ale mělo by to běžet ok
-  - Přidat do DNS záznamů adamovy stroje
-  - Zkusit a spustit Adamův authoritative DNS Slave a zjistit, jestli si správně stáhne data
-  - Vyzkoušet výpadek
-- Mít na obou clusterovaných strojích shodné informace - Nemám!
-- Rekurzivní DNS je momentálně neskutečně naprasenej, nešlo by to udělat líp? 
-  - Všechny dotazy nyní prvotně směřuje na cluster, kterej ale zná jen \*.local
-  - Když bude chvíli času, podívat se, jestli by to nešlo udělat nějak pomocí pohledů či co
-- Spustit na neclusterových pc nějaké služby ať máme co dát do záznamů (www, ftp... whatever)
+- Prezentace
+- Doplnit setup SLAVE
+- Doplnit config rekurzivního serveru
+- Doplnit zonové configy?
+- Jinak už to je jakž takž hotovo
 
 # DNS Cluster
 
@@ -56,7 +52,7 @@ They are used to find IP addresses by searching for domain information on their 
 Authoritative DNS servers store and provide DNS records for specific domain names, acting as the ultimate source of truth for domain-related information (IPv4/6 addresses, servers for e-mail, ...). It is neccessary that at least two servers serve a domain - Master & Slave. The only difference between Master & Slave servers is that Slave servers in periodic intervals checks Master for actual information about DNS zones, The answer from Master and Slave have the same trustworthness
 
 #### BIND9
-
+uuu
 BIND, or BIND9, is an open-source software implementation of the Domain Name System (DNS) protocol. It can serve as Authoritative, Recursive or Mixed DNS server. It is the most widely used software for DNS and support all DNS features.
 
 ### VRRP
@@ -71,7 +67,7 @@ Keepalived is an open-source implementation of VRRP for Linux-based systems. It 
 
 ### Authoritative cluster
 
-TODO - Vyřešit posílání záznamů mezi stroji v clusteru!
+#### Primary machine in cluster
 
 - Update system: sudo apt update && sudo apt upgrade (Debian-based)
 - Install all necessary packages: arping, traceroute, net-tools, keepalived, bind9
@@ -92,9 +88,17 @@ TODO - Vyřešit posílání záznamů mezi stroji v clusteru!
   - Check from other computer: host \<domain name\> \<virtual ip\>
 - Test by shutting down machines
 
+#### Secondary machine in cluster
+
+- Setup the same way as machine in Slave-cluster, the only difference is that int primaries will be physical IP of primary machine
+
+### Slave cluster
+
+- TODO, Adame, tady prosím doplň, jak jsi nastavil tvůj cluster
+
 ### Recursive server
 
-TODO - Napraseno - opravit!
+TODO - Adame, doplň tvůj lepší config
 
 - Update system: sudo apt update && sudo apt upgrade (Debian-based)
 - Install all necessary packages: arping, traceroute, net-tools, bind9
@@ -105,42 +109,6 @@ TODO - Napraseno - opravit!
   - Check logs: cat /var/log/syslog
   - Enable service: sudo systemctl enable named
   - test from other machine: host \<domain name\> \<server ip\> 
-
-## Explanation of BIND9 configuration files
-
-### Zone files
-
-$TTL 3600
-#For how long should be considered helthy in DNS Cache
-
-$Origin example.net
-#Domain name
-
-@ SOA ns1.example.net. admin.example.net. ( # Start of authority, primary DNS, Admin's email
-            2022042801                            # Convetnion is yyyymmdd\<Two digits for changes in one day\>
-            3600                                  # In this interval slave servers ask primary for changes 
-            1800         			  # If failure nex try in
-            604800      			  # If primary down, how long should be entry considered healthy
-            86400                                 # If ttl not set this will be used
-            )
-            NS  ns1.example.net. 		  # Define nameserver(s) serving this domain
-
-ns1.example.net.    A       169.254.0.1       # Glue entry for nameserver
-                    AAAA    2001:0db8::00ab   # Glue entry for nameserver
-
-@       	    A       169.254.0.2      # Define the IP address for the domain
- 	            AAAAA   2001:0db8::00ac  # Define the IPv6 address for the domain
-                    TXT     "Set message for this domain"
-
-www		    CNAME   webovky          # Define nickname
-webovky		    A	    169.254.0.3
-		    AAAA    2001:0db8::34 	 
-
-@	            MX      0	mx1.example.net. # Define mail server with priority 0 (lower = better)
-@                   MX      0       .                # The domain does not accept emails
-
-25                  PTR     some.server.example.net.  # Set PTR for reverse DNS
- 						      # Reverse DNS needs separate zones!
 
 ## Possible improvements
 
