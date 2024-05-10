@@ -6,22 +6,30 @@
 $TTL    0
 
 @       IN      SOA     a.ns.local. admin.local. (
-                     2024042702         ; Serial
+                     2024050902         ; Serial
                          604800         ; Refresh
                           86400         ; Retry
                         2419200         ; Expire
                          604800 )       ; Negative Cache TTL
-; Name servers
+
+; Name servers & glue records
 @       IN      NS      a.ns.local.
+@       IN      NS      b.ns.local.
 
 a.ns    IN      A       10.119.76.179
-a.ns	IN	TXT	"Primary DNS server"
+a.ns    IN      TXT     "Primary DNS server for *.local"
 
-@	IN	MX	0 .
-@	IN 	TXT	"This domain does not support mail"
+b.ns    IN      A       10.119.76.173
+b.ns    IN      TXT     "Secondary DNS server for *.local"
+
+@       IN      MX      0 .
+@       IN      TXT     "This domain does not support mail"
 
 ; Other services
+www1            CNAME   slavion7-1
+recur-server-2  CNAME   slavion7-1
+slavion7-1      A       10.119.76.176
 
-www1		CNAME	slavion7-1
-recur-server-1	CNAME   slavion7-1
-slavion7-1	A       10.119.76.176
+recur-server-1  CNAME   prchlad2-1
+prchlad2-1      A       10.119.76.170
+

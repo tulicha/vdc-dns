@@ -6,16 +6,35 @@
 $TTL    0
 
 @       IN      SOA     a.ns.local. admin.local. (
-                     2024042702         ; Serial
+                     2024050902         ; Serial
                          604800         ; Refresh
                           86400         ; Retry
                         2419200         ; Expire
                          604800 )       ; Negative Cache TTL
+
 ; Name servers
-@       IN      NS        a.ns.local.
-a       IN      A         10.119.76.179
-a       IN      TXT       "Primary DNS for *.ns.local"
+@       IN      NS      a.ns.local.
+@       IN      NS      b.ns.local.
 
-@	IN	MX	0	.
+a       IN      A       10.119.76.179
+a       IN      TXT     "Primary DNS for *.ns.local"
 
+b       IN      A       10.119.76.173
+b       IN      TXT     "Secondary DNS for *.ns.local"
+
+@       IN      MX      0 .
+@       IN      TXT     "This domain does not support mail"
+
+; Other services
+a-p1    IN      A       10.119.76.177
+a-p1    IN      TXT     "#1 physical server of a.ns cluster"
+
+a-p2    IN      A       10.119.76.178
+a-p2    IN      TXT     "#2 physical server of a.ns cluster"
+
+b-p1    IN      A       10.119.76.171
+b-p1    IN      TXT     "#1 physical server of b.ns cluster"
+
+b-p2    IN      A       10.119.76.177
+b-p2    IN      TXT     "#2 physical server of b.ns cluster"
 
