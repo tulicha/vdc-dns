@@ -1,34 +1,38 @@
+acl notify_group {
+        10.119.76.178;
+        10.119.76.171;
+        10.119.76.172;
+};
+
+
 zone "local" IN {
         type master;
         file "/etc/bind/zones/local";
         notify yes;
-        #also-notfy { 10.119.76.173 };
+        #also-notfy { notify_group };
 };
 
 zone "ns.local" {
         type master;
         file "/etc/bind/zones/ns.local";
         notify yes;
-        #also-notfy { 10.119.76.173 };
+        #also-notfy { notify_group };
 };
-
-
-
 
 
 #a.ns.local.
 zone "179.76.119.10.in-addr.arpa" {
-	type master;
-	file "/etc/bind/zones/179.76.119.10.in-addr.arpa";
-	notify yes;
-	#also-notify { 10.119.76.173 };
+        type master;
+        file "/etc/bind/zones/179.76.119.10.in-addr.arpa";
+        notify yes;
+        #also-notify { notify_group };
 };
 
 #slavion7-1.local.
 zone "176.76.119.10.in-addr.arpa" {
-	type master;
-	file "/etc/bind/zones/176.76.119.10.in-addr.arpa";
-	notify yes;
-	#also-notfy { 10.119.76.173 };
+        type master;
+        file "/etc/bind/zones/176.76.119.10.in-addr.arpa";
+        notify yes;
+        #also-notfy { notify_group };
 };
 
