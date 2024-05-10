@@ -6,7 +6,7 @@ options {
     auth-nxdomain no;            // Do not provide authoritative answers for NXDOMAIN
 
     allow-transfer {
-        MASTER_IP_ADDRESS;       // Replace MASTER_IP_ADDRESS with the IP address of the master server
+         10.119.76.0/22;       // Replace MASTER_IP_ADDRESS with the IP address of the master server
     };
 
     rate-limit {
