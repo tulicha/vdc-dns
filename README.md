@@ -1,11 +1,3 @@
-# TODO
-
-- Prezentace
-- Doplnit setup SLAVE
-- Doplnit config rekurzivního serveru-hotovo je to ten co vypada funkčně
-- Doplnit zonové configy? .uplne nechapu co tim myslis?
-- Jinak už to je jakž takž hotovo
-
 # DNS Cluster
 
 ## Goals of this project
