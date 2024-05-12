@@ -101,10 +101,10 @@ Keepalived is an open-source implementation of VRRP for Linux-based systems. It 
   - Download zone entries from master: sudo rndc reload *
   - Check logs: cat /var/log/syslog
   - You may need to update privileges
-      -sudo cp /etc/apparmor.d/usr.sbin.named /etc/apparmor.d/usr.sbin.named.custom¨
-      -sudo nano /etc/apparmor.d/usr.sbin.named.custom
-      -sudo apparmor_parser -r /etc/apparmor.d/usr.sbin.named.custom
-      -sudo systemctl restart bind9
+    -sudo cp /etc/apparmor.d/usr.sbin.named /etc/apparmor.d/usr.sbin.named.custom¨
+    -sudo nano /etc/apparmor.d/usr.sbin.named.custom
+    -sudo apparmor_parser -r /etc/apparmor.d/usr.sbin.named.custom
+    -sudo systemctl restart bind9
   - Enable service: sudo systemctl enable named
   - Check from other computer: host \<domain name\> \<virtual ip\>
 
